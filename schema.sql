@@ -32,3 +32,30 @@ CREATE TABLE stores (
   location VARCHAR(20),
   PRIMARY_KEY ( store_id )
 );
+
+CREATE TABLE consists(
+	list_id	INTEGER NOT NULL,
+	food_id INTEGER NOT NULL,
+	quantity INTEGER NOT NULL
+);
+
+CREATE TABLE purchases(
+	purchase_id INTEGER NOT NULL AUTO_INCREMENT,
+	user_id INTEGER NOT NULL,
+	food_id INTEGER NOT NULL,
+	store_id INTEGER NOT NULL,
+	price DECIMAL NOT NULL,
+	quantity INTEGER NOT NULL,
+	purchase_date NOT NULL TIMESTAMP DEFAULT NOW(),
+	expiration_date DATE,
+	PRIMARY_KEY ( purchase_id )
+);
+
+CREATE TABLE available(
+	food_id	INTEGER NOT NULL,
+	store_id INTEGER NOT NULL,
+	price DECIMAL NOT NULL,
+	quantity INTEGER NOT NULL
+);
+
+
