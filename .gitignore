@@ -35,4 +35,4 @@ build/
 .rvmrc
 
 # Vim stuff
-*.s?
+*.sw?
