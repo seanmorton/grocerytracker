@@ -1,8 +1,14 @@
+DROP DATABASE grocery_tracker;
+CREATE DATABASE grocery_tracker;
+USE grocery_tracker;
+
 CREATE TABLE users (
   user_id     INTEGER NOT NULL AUTO_INCREMENT,
   user_name   VARCHAR(20) NOT NULL,
+  password    VARCHAR(20) NOT NULL,
   name        VARCHAR(40) NOT NULL,
-  PRIMARY KEY ( user_id )
+  PRIMARY KEY ( user_id ),
+  UNIQUE ( password )
 );
 
 CREATE TABLE shopping_lists (
