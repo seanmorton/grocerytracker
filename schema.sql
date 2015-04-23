@@ -30,7 +30,7 @@ CREATE TABLE foods (
 CREATE TABLE stores (
   store_id INTEGER NOT NULL AUTO_INCREMENT,
   name VARCHAR(20) NOT NULL,
-  location VARCHAR(20),
+  location VARCHAR(60),
   PRIMARY KEY ( store_id )
 );
 
