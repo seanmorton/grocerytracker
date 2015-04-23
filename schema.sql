@@ -8,7 +8,7 @@ CREATE TABLE users (
   password    VARCHAR(20) NOT NULL,
   name        VARCHAR(40) NOT NULL,
   PRIMARY KEY ( user_id ),
-  UNIQUE ( password )
+  UNIQUE ( user_name )
 );
 
 CREATE TABLE shopping_lists (
@@ -16,7 +16,7 @@ CREATE TABLE shopping_lists (
   user_id     INTEGER NOT NULL,
   name        VARCHAR(20),
   PRIMARY KEY ( list_id ),
-  FOREIGN KEY ( user_id ) REFERENCES users(user_id)
+  FOREIGN KEY ( user_id ) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
 CREATE TABLE foods (
@@ -38,7 +38,7 @@ CREATE TABLE consists(
 	list_id	INTEGER NOT NULL,
 	food_id INTEGER NOT NULL,
 	quantity INTEGER NOT NULL,
-  FOREIGN KEY ( list_id ) REFERENCES shopping_lists(list_id)
+  FOREIGN KEY ( list_id ) REFERENCES shopping_lists(list_id) ON DELETE CASCADE
 );
 
 CREATE TABLE purchases(
