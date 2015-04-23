@@ -44,9 +44,9 @@ CREATE TABLE purchases(
 	user_id INTEGER NOT NULL,
 	food_id INTEGER NOT NULL,
 	store_id INTEGER NOT NULL,
-	price DECIMAL NOT NULL,
+	price DECIMAL(10, 2) NOT NULL,
 	quantity INTEGER NOT NULL,
-	purchase_date NOT NULL TIMESTAMP DEFAULT NOW(),
+	purchase_date TIMESTAMP NOT NULL DEFAULT NOW(),
 	expiration_date DATE,
 	PRIMARY KEY ( purchase_id )
 );
