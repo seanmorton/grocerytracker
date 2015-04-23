@@ -6,6 +6,7 @@ VALUES ("tommyLovesPuppies", "BegginStrips123", "Tom Meyer"),
        ("SeanMorton", "smmorton", "Sean Morton"),
        ("IanWeiland", "iweiland", "Ian Weiland");
 
+<<<<<<< HEAD
 INSERT INTO foods (name, category, description)
 VALUES ("Anhai Farms Golden Apples", "Produce", "1 bushell of the finest golden delicious apples"),
        ("Chex Mix", "Snack", "With a variety of delicious tastes and textures"),
@@ -17,6 +18,10 @@ VALUES ("Anhai Farms Golden Apples", "Produce", "1 bushell of the finest golden 
        ("Sunny Meadow Grade A Eggs", "Diary", "To prevent illness From bacteria, keep eggs refrigerated"),
        ("Great Value 2% Milk", "Diary", "Reduced fat milk, Vitamin A palmitate, Vitamin D3"),
        ("Reese's Kit Kat", "Snack", "Classic crisp wafers are wrapped in a delicious milk chocolate");
+=======
+INSERT INTO shopping_lists (user_id,name)
+VALUES ((SELECT user_id FROM users WHERE name='Tom Meyer'), 'Toms Groceries');
+>>>>>>> 676232d65173d72d51f6b7e3990f806b0a39569d
 
 INSERT INTO stores (name, location)
 VALUES ("Target", "Hildale Mall, Madison, WI"),
@@ -61,3 +66,8 @@ VALUES (1, "Every Week List"),
 
 
 
+<<<<<<< HEAD
+=======
+INSERT INTO available (food_id,store_id,price,quantity)
+VALUES ('food_id','store_id','price','quantity');
+>>>>>>> 676232d65173d72d51f6b7e3990f806b0a39569d
