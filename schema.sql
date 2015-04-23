@@ -12,16 +12,10 @@ CREATE TABLE shopping_lists (
   PRIMARY KEY ( list_id )
 );
 
-CREATE TABLE categories (
-  category_id INTEGER NOT NULL AUTO_INCREMENT,
-  name        VARCHAR(20) NOT NULL,
-  PRIMARY KEY ( category_id )
-);
-
 CREATE TABLE foods (
   food_id INTEGER NOT NULL AUTO_INCREMENT,
-  category_id INTEGER NOT NULL,
   name VARCHAR(40) NOT NULL,
+  category VARCHAR(20) NOT NULL,
   description VARCHAR(60),
   PRIMARY KEY ( food_id )
 );
@@ -54,7 +48,7 @@ CREATE TABLE purchases(
 CREATE TABLE available(
 	food_id	INTEGER NOT NULL,
 	store_id INTEGER NOT NULL,
-	price DECIMAL NOT NULL,
+	price DECIMAL(10,2) NOT NULL,
 	quantity INTEGER NOT NULL
 );
 
