@@ -3,7 +3,7 @@ VALUES ('tommyLovesPuppies','BegginStrips123','Tom Meyer');
 
 INSERT INTO shopping_lists (user_id,name)
 VALUES ((SELECT user_id FROM users WHERE name='Tom Meyer'), 'Toms Groceries');
-a
+
 INSERT INTO foods (name,category,description)
 VALUES ('Anhai Farms Golden Apples','Produce','1 bushell of the finest golden delicious apples');
 
