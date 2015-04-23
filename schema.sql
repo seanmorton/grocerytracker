@@ -15,7 +15,8 @@ CREATE TABLE shopping_lists (
   list_id     INTEGER NOT NULL AUTO_INCREMENT,
   user_id     INTEGER NOT NULL,
   name        VARCHAR(20),
-  PRIMARY KEY ( list_id )
+  PRIMARY KEY ( list_id ),
+  FOREIGN KEY ( user_id ) REFERENCES users(user_id)
 );
 
 CREATE TABLE foods (
@@ -36,7 +37,8 @@ CREATE TABLE stores (
 CREATE TABLE consists(
 	list_id	INTEGER NOT NULL,
 	food_id INTEGER NOT NULL,
-	quantity INTEGER NOT NULL
+	quantity INTEGER NOT NULL,
+  FOREIGN KEY ( list_id ) REFERENCES shopping_lists(list_id)
 );
 
 CREATE TABLE purchases(
@@ -48,14 +50,18 @@ CREATE TABLE purchases(
 	quantity INTEGER NOT NULL,
 	purchase_date TIMESTAMP NOT NULL DEFAULT NOW(),
 	expiration_date DATE,
-	PRIMARY KEY ( purchase_id )
+	PRIMARY KEY ( purchase_id ),
+  FOREIGN KEY ( user_id ) REFERENCES users(user_id),
+  FOREIGN KEY ( food_id ) REFERENCES foods(food_id),
+  FOREIGN KEY ( store_id ) REFERENCES stores(store_id)
 );
 
 CREATE TABLE available(
 	food_id	INTEGER NOT NULL,
 	store_id INTEGER NOT NULL,
 	price DECIMAL(10,2) NOT NULL,
-	quantity INTEGER NOT NULL
+	quantity INTEGER NOT NULL,
+  FOREIGN KEY ( store_id ) REFERENCES stores(store_id)
 );
 
 
