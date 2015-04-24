@@ -1,5 +1,5 @@
 CREATE VIEW search_result AS
-SELECT F.food_id, F.name AS food_name, F.category, A.price, S.name AS store_name
+SELECT F.food_id, F.name AS food_name, F.category, A.price, S.name AS store_name, S.store_id
 FROM foods F, available A, stores S
 WHERE (A.price <= 200) AND ( A.price >= 0) AND (F.category = "Produce") AND (S.name = "target") 
       AND (F.name = "Anhai Farms Golden Apples") AND (A.quantity > 0 )
