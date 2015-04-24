@@ -21,16 +21,16 @@ CREATE TABLE shopping_lists (
 
 CREATE TABLE foods (
   food_id INTEGER NOT NULL AUTO_INCREMENT,
-  name VARCHAR(40) NOT NULL,
+  name VARCHAR(60) NOT NULL,
   category VARCHAR(20) NOT NULL,
-  description VARCHAR(60),
+  description VARCHAR(160),
   PRIMARY KEY ( food_id )
 );
 
 CREATE TABLE stores (
   store_id INTEGER NOT NULL AUTO_INCREMENT,
   name VARCHAR(20) NOT NULL,
-  location VARCHAR(60),
+  location VARCHAR(80),
   PRIMARY KEY ( store_id )
 );
 
