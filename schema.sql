@@ -38,6 +38,7 @@ CREATE TABLE consists(
 	list_id	INTEGER NOT NULL,
 	food_id INTEGER NOT NULL,
 	quantity INTEGER NOT NULL,
+	PRIMARY KEY ( list_id, food_id ),
   FOREIGN KEY ( list_id ) REFERENCES shopping_lists(list_id) ON DELETE CASCADE
 );
 
@@ -61,6 +62,7 @@ CREATE TABLE available(
 	store_id INTEGER NOT NULL,
 	price DECIMAL(10,2) NOT NULL,
 	quantity INTEGER NOT NULL,
+	PRIMARY KEY ( food_id, store_id ),
   FOREIGN KEY ( store_id ) REFERENCES stores(store_id)
 );
 
