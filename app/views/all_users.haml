@@ -1,0 +1,14 @@
+%h1 All Users
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Username
+      %th Password
+  %tbody
+    -@all_users.each do |user|
+      %tr
+        %td=user[:name]
+        %td=user[:user_name]
+        %td=user[:password]
