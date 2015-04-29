@@ -21,16 +21,16 @@ CREATE TABLE shopping_lists (
 
 CREATE TABLE foods (
   food_id INTEGER NOT NULL AUTO_INCREMENT,
-  name VARCHAR(40) NOT NULL,
+  name VARCHAR(60) NOT NULL,
   category VARCHAR(20) NOT NULL,
-  description VARCHAR(60),
+  description VARCHAR(160),
   PRIMARY KEY ( food_id )
 );
 
 CREATE TABLE stores (
   store_id INTEGER NOT NULL AUTO_INCREMENT,
   name VARCHAR(20) NOT NULL,
-  location VARCHAR(60),
+  location VARCHAR(80),
   PRIMARY KEY ( store_id )
 );
 
@@ -38,6 +38,7 @@ CREATE TABLE consists(
 	list_id	INTEGER NOT NULL,
 	food_id INTEGER NOT NULL,
 	quantity INTEGER NOT NULL,
+	PRIMARY KEY ( list_id, food_id ),
   FOREIGN KEY ( list_id ) REFERENCES shopping_lists(list_id) ON DELETE CASCADE
 );
 
@@ -61,6 +62,7 @@ CREATE TABLE available(
 	store_id INTEGER NOT NULL,
 	price DECIMAL(10,2) NOT NULL,
 	quantity INTEGER NOT NULL,
+	PRIMARY KEY ( food_id, store_id ),
   FOREIGN KEY ( store_id ) REFERENCES stores(store_id)
 );
 
