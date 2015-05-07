@@ -1,0 +1,25 @@
+%h2 Edit Food
+
+%form{ action: 'edit_food', method: 'POST' }
+
+  %table.table
+    %tbody
+      %tr
+        %td
+          %label{ for: 'name' } Name
+        %td
+          %input{ type: 'text', name: 'name', value: @food[:name] }
+      %tr
+        %td
+          %label{ for: 'category' } Category
+        %td
+          %input{ type: 'text', name: 'category', value: @food[:category] }
+      %tr
+        %td
+          %label{ for: 'description' } Description
+        %td
+          %textarea{ rows: 4, cols: 80, name: 'description', placeholder: @food[:description] }
+
+  %input{ type: 'hidden', name: 'food_id', value: @food[:food_id] }
+
+  %input{ type: 'submit', value: 'Create', class: 'btn btn-primary' }

@@ -1,0 +1,13 @@
+%h1 Register for Grocery Tracker
+
+%form{ action: 'register', method: 'POST' }
+  %label{ for: 'username' } Username
+  %input{ type: 'text', name: 'username' }
+  %br
+  %label{ for: 'password' } Password
+  %input{ type: 'password', name: 'password' }
+  %br
+  %label{ for: 'password' } Name
+  %input{ type: 'text', name: 'name' }
+  %br
+  %input{ type: 'submit', value: 'Register' }

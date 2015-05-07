@@ -1,0 +1,23 @@
+%h2 New Food
+
+%form{ action: 'new_food', method: 'POST' }
+
+  %table.table
+    %tbody
+      %tr
+        %td
+          %label{ for: 'name' } Name
+        %td
+          %input{ type: 'text', name: 'name' }
+      %tr
+        %td
+          %label{ for: 'name' } Category
+        %td
+          %input{ type: 'text', name: 'category' }
+      %tr
+        %td
+          %label{ for: 'name' } Description
+        %td
+          %input{ type: 'text-area', name: 'description' }
+
+  %input{ type: 'submit', value: 'Create', class: 'btn btn-primary' }

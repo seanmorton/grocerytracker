@@ -4,21 +4,31 @@
     %link{ rel: 'icon', type: 'image/png', href: 'images/favicon.ico' }
   %body
     .jumbotron{ style: 'padding: 0' }
+      .panel.panel-default{ style: 'float: right;' }
+        .panel-heading
+          Brought to you by
+        .list-group
+          %li.list-group-item Sean Morton
+          %li.list-group-item Danni Wang
+          %li.list-group-item Yuting Liu
+          %li.list-group-item Ian Weiland
+
       %img{ src: 'images/logo.png', alt: 'Brand', style: 'width: 200px; float: left;' }
       .container{ style: 'padding-bottom: 0' }
         %h1 Grocery Tracker
 
         %ul.nav.nav-pills
           %li.active
-            %a{ href: '#'} Pantry
+            %a{ href: '/pantry'} Pantry
           %li.active
             %a{ href: '#'} Shopping Lists
           %li.active
             %a{ href: '#'} Stores
           %li.active
-            %a{ href: '#'} Foods
+            %a{ href: '/all_foods'} Foods
           %li.active
             %a{ href: '/logout' } Logout
+
 
     .container
       =yield

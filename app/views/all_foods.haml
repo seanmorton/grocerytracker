@@ -1,0 +1,22 @@
+%h1 Food
+
+%a{ href: '/new_food', class: 'btn btn-primary' } New Food
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Category
+      %th Description
+      %th
+      %th
+  %tbody
+    -@all_foods.each do |food|
+      %tr
+        %td=food[:name]
+        %td=food[:category]
+        %td=food[:description]
+        %td
+          %a{href: "/edit_food?food_id=#{food[:food_id]}" } &#9998; Edit
+        %td
+          %a{href: "/delete_food?food_id=#{food[:food_id]}" } &#8855; Delete

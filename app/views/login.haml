@@ -3,6 +3,10 @@
 %form{ action: 'login', method: 'POST' }
   %label{ for: 'username' } Username
   %input{ type: 'text', name: 'username' }
+  %br
   %label{ for: 'password' } Password
   %input{ type: 'password', name: 'password' }
+  %br
   %input{ type: 'submit', value: 'Login' }
+
+%a{ href: '/register' } Register
