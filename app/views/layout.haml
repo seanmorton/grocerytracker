@@ -1,0 +1,24 @@
+%html
+  %head
+    %link{ rel: 'stylesheet', type: 'text/css', href: 'stylesheets/bootstrap.min.css' }
+    %link{ rel: 'icon', type: 'image/png', href: 'images/favicon.ico' }
+  %body
+    .jumbotron{ style: 'padding: 0' }
+      %img{ src: 'images/logo.png', alt: 'Brand', style: 'width: 200px; float: left;' }
+      .container{ style: 'padding-bottom: 0' }
+        %h1 Grocery Tracker
+
+        %ul.nav.nav-pills
+          %li.active
+            %a{ href: '#'} Pantry
+          %li.active
+            %a{ href: '#'} Shopping Lists
+          %li.active
+            %a{ href: '#'} Stores
+          %li.active
+            %a{ href: '#'} Foods
+          %li.active
+            %a{ href: '/logout' } Logout
+
+    .container
+      =yield

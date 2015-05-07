@@ -6,3 +6,8 @@ DBCONN.query_options.merge!(:symbolize_keys => true)
 def all_users
   DBCONN.query("SELECT * FROM users")
 end
+
+def get_user_id(username, password)
+  tuple = DBCONN.query("SELECT user_id FROM users WHERE user_name = '#{username}' AND password = '#{password}'").first
+  tuple.nil? ? nil : tuple[:user_id]
+end

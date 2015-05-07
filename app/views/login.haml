@@ -1,0 +1,8 @@
+%h1 Login To Grocery Tracker
+
+%form{ action: 'login', method: 'POST' }
+  %label{ for: 'username' } Username
+  %input{ type: 'text', name: 'username' }
+  %label{ for: 'password' } Password
+  %input{ type: 'password', name: 'password' }
+  %input{ type: 'submit', value: 'Login' }
