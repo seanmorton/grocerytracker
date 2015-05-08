@@ -40,6 +40,7 @@ class GroceryTracker < Sinatra::Base
 
   get '/pantry' do
     @purchases = get_purchases(session['user_id'])
+    @total_paid = get_purchases_total_paid(session['user_id'])
     haml :pantry
   end
 
@@ -103,4 +104,15 @@ class GroceryTracker < Sinatra::Base
     create_purchase(session[:user_id], params[:food_id], params[:store_id], params[:price], params[:quantity])
     redirect to("/available?store_id=#{params[:store_id]}")
   end
+
+  get '/search' do
+    haml :search
+  end
+
+  post '/search' do
+    @results = search(params[:food_name], params[:max_price])
+    haml :search_result
+  end
+
+
 end

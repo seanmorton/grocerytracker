@@ -1,0 +1,26 @@
+%h2{class: 'page-header'} Search Results
+
+.well
+  %form{ action: 'search', method: 'POST' }
+    %label{ for: 'food_name' } Food Name
+    %input{ type: 'text', name: 'food_name', value: params[:food_name] }
+    %label{ for: 'max_price' } Max Price
+    %input{ type: 'text', name: 'max_price', value: params[:max_price] }
+    %input{ type: 'submit', value: 'Search', class: 'btn btn-primary' }
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Food
+      %th Price
+      %th Quantity
+      %th Store Name
+  %tbody
+    -@results.each do |result|
+      %tr
+        %td=result[:food_name]
+        %td="$#{sprintf('%.2f', result[:food_price])}"
+        %td=result[:food_quantity]
+        %td=result[:store_name]
+        %td
+          %a{ href: "/available?store_id=#{result[:store_id]}" } &#8594; View in Store

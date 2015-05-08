@@ -1,10 +1,14 @@
 %h2 My Pantry (Purchases)
 
+%i Expired items are highlighted in red. Items soon to expire are highlighted in yellow.
+
 %table.table.table-striped
   %thead
     %tr
       %th Food
       %th Quantity
+      %th Unit Price
+      %th Total Paid
       %th Purchased At
       %th Purchase Date
       %th Expiration Date
@@ -20,9 +24,15 @@
       %tr{ class: klass }
         %td=purchase[:food_name]
         %td=purchase[:quantity]
+        %td="$#{sprintf('%.2f', purchase[:unit_price])}"
+        %td="$#{sprintf('%.2f', purchase[:price_paid])}"
         %td=purchase[:store_name]
         %td=purchase[:purchase_date].strftime("%Y-%m-%d")
         %td=purchase[:expiration_date]
         %td
           %a{ href: "/delete_from_pantry?purchase_id=#{purchase[:purchase_id]}" } &#8855; Remove
+
+%h3{ style: 'float: right;' }
+  Total paid for items in pantry:
+  ="$#{sprintf('%.2f', @total_paid)}"
 

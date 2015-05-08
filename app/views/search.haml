@@ -1,0 +1,19 @@
+%h2{ class: 'page-header' } Search
+
+.well
+  %form{ action: 'search', method: 'POST' }
+
+    %table.table
+      %tbody
+        %tr
+          %td
+            %label{ for: 'food_name' } Food Name
+          %td
+            %input{ type: 'text', name: 'food_name' }
+        %tr
+          %td
+            %label{ for: 'max_price' } Max Price
+          %td
+            %input{ type: 'text', name: 'max_price' }
+
+    %input{ type: 'submit', value: 'Search', class: 'btn btn-primary' }

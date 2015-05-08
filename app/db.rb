@@ -84,7 +84,7 @@ end
 
 def create_purchase(user_id, food_id, store_id, price, quantity)
   tuple = DBCONN.query("INSERT INTO purchases (user_id, food_id, store_id, price, quantity, expiration_date)
-                        VALUES  (#{user_id}, #{food_id}, #{store_id}, #{price}, #{quantity}, '#{(Date.today + Random.rand(-30..30)).strftime('%Y-%m-%d')}')")
+                        VALUES  (#{user_id}, #{food_id}, #{store_id}, #{price}, #{quantity}, '#{(Date.today + Random.rand(-15..30)).strftime('%Y-%m-%d')}')")
 
 end
 
@@ -93,10 +93,44 @@ def delete_purchase(purchase_id)
 end
 
 def get_purchases(user_id)
-  DBCONN.query("SELECT foods.name as food_name, stores.name as store_name, purchases.purchase_id as purchase_id, purchases.quantity as quantity, purchases.purchase_date as purchase_date, purchases.expiration_date as expiration_date
-                FROM purchases, foods, stores
-                WHERE purchases.user_id = #{user_id}
-                  AND purchases.food_id = foods.food_id
-                  AND purchases.store_id = stores.store_id")
+  tuple =  DBCONN.query("SELECT (purchases.quantity*purchases.price) as price_paid, foods.name as food_name, stores.name as store_name,
+                          purchases.purchase_id as purchase_id, purchases.price as unit_price, purchases.quantity as quantity, purchases.purchase_date as purchase_date, purchases.expiration_date as expiration_date
+                        FROM purchases, foods, stores
+                        WHERE purchases.user_id = #{user_id}
+                          AND purchases.food_id = foods.food_id
+                          AND purchases.store_id = stores.store_id")
+
+  tuple.each do |t|
+    t[:price_paid] = t[:price_paid].to_f
+    t[:unit_price] = t[:unit_price].to_f
+    t[:total_paid] = t[:total_paid].to_f
+  end
+
 end
 
+def get_purchases_total_paid(user_id)
+  tuple = DBCONN.query("SELECT SUM(purchases.quantity*purchases.price) as total_paid
+                        FROM purchases, foods, stores
+                        WHERE purchases.user_id = #{user_id}
+                          AND purchases.food_id = foods.food_id
+                          AND purchases.store_id = stores.store_id")
+
+  tuple.first[:total_paid] = tuple.first[:total_paid].to_f
+end
+
+
+def search(food_name, max_price)
+  tuple = DBCONN.query("SELECT foods.name as food_name, available.price as food_price, available.quantity as food_quantity, stores.name as store_name, stores.store_id as store_id
+                        FROM foods, available, stores
+                        WHERE UPPER(foods.name) LIKE UPPER('%#{food_name}%')
+                          AND available.price<= #{max_price}
+                          AND foods.food_id = available.food_id
+                          AND stores.store_id = available.store_id
+                          AND available.quantity > 0
+                        ORDER BY available.price ASC")
+
+  tuple.each do |t|
+    t[:food_price] = t[:food_price].to_f
+  end
+
+end
