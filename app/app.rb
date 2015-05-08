@@ -39,7 +39,13 @@ class GroceryTracker < Sinatra::Base
   end
 
   get '/pantry' do
+    @purchases = get_purchases(session['user_id'])
     haml :pantry
+  end
+
+  get '/delete_from_pantry' do
+    delete_purchase(params[:purchase_id])
+    redirect to('/pantry')
   end
 
   get '/all_foods' do
@@ -71,4 +77,30 @@ class GroceryTracker < Sinatra::Base
     redirect to('/all_foods')
   end
 
+  get '/all_stores' do
+    @all_stores = all_stores
+    haml :all_stores
+  end
+
+  get '/add_to_store' do
+    @stores = all_stores
+    @food = { id: params[:food_id], name: params[:food_name] }
+    haml :add_to_store
+  end
+
+  post '/add_to_store' do
+    add_to_available(params[:store_id], params[:food_id], params[:price], params[:quantity])
+    redirect to('/all_foods')
+  end
+
+  get '/available' do
+    @available = available(params[:store_id])
+    haml :available
+  end
+
+  get '/purchase' do
+    update_available(params[:store_id], params[:food_id], params[:quantity])
+    create_purchase(session[:user_id], params[:food_id], params[:store_id], params[:price], params[:quantity])
+    redirect to("/available?store_id=#{params[:store_id]}")
+  end
 end

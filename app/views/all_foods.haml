@@ -10,12 +10,15 @@
       %th Description
       %th
       %th
+      %th
   %tbody
     -@all_foods.each do |food|
       %tr
         %td=food[:name]
         %td=food[:category]
         %td=food[:description]
+        %td
+          %a{href: "/add_to_store?food_id=#{food[:food_id]}&food_name=#{food[:name]}" } &#10133; Add to Store
         %td
           %a{href: "/edit_food?food_id=#{food[:food_id]}" } &#9998; Edit
         %td

@@ -1,1 +1,28 @@
-welcom to the pantry bitch
+%h2 My Pantry (Purchases)
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Food
+      %th Quantity
+      %th Purchased At
+      %th Purchase Date
+      %th Expiration Date
+      %th
+  %tbody
+    -@purchases.each do |purchase|
+      -exp_period = (purchase[:expiration_date] - Date.today).to_i
+      -klass = ''
+      -if exp_period < 0
+        -klass = 'danger'
+      -elsif exp_period < 7
+        -klass = 'warning'
+      %tr{ class: klass }
+        %td=purchase[:food_name]
+        %td=purchase[:quantity]
+        %td=purchase[:store_name]
+        %td=purchase[:purchase_date].strftime("%Y-%m-%d")
+        %td=purchase[:expiration_date]
+        %td
+          %a{ href: "/delete_from_pantry?purchase_id=#{purchase[:purchase_id]}" } &#8855; Remove
+

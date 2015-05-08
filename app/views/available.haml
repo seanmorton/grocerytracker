@@ -1,0 +1,35 @@
+%h2="Available foods for #{@available.first[:store_name] }"
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Category
+      %th Description
+      %th Quantity
+      %th Price
+      %th
+  %tbody
+    -@available.each do |available|
+      %tr
+        %td=available[:food_name]
+        %td=available[:food_category]
+        %td=available[:food_description]
+        %td
+          %select{ id: "quantity_#{available[:food_id]}" }
+            -(1..available[:quantity]).each do |val|
+              %option{ value: val }=val
+        %td="$#{sprintf('%.2f', available[:price])}"
+        %td
+          %a{href: "/purchase?food_id=#{available[:food_id]}&store_id=#{available[:store_id]}&price=#{available[:price]}", id: "#{available[:food_id]}", onclick: "setQuantity(#{available[:food_id]})" } &#65284; Purchase
+
+
+:javascript
+
+  function setQuantity(id) {
+    var link = document.getElementById(id);
+    var quantity = document.getElementById('quantity_' + id).value;
+
+    new_href = link.href + "&quantity=" + quantity;
+    link.setAttribute("href", new_href);
+  }

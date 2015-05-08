@@ -1,0 +1,20 @@
+%h2="Add '#{@food[:name]}' to Store"
+%hr
+%form{ action: 'add_to_store', method: 'POST' }
+  %label{ for: 'store' } Add to
+  %select{ name: 'store_id' }
+    -@stores.each do |store|
+      %option{ value: store[:store_id] }="#{store[:name]}"
+  %br
+  %br
+  %label{ for: 'quantity' } Quantity
+  %input{ type: 'number', name: 'quantity' }
+  %br
+  %br
+  %label{ for: 'price' } Price $
+  %input{ type: 'text', name: 'price' }
+  %br
+  %br
+  %input{ type: 'hidden', value: @food[:id], name: 'food_id' }
+  %input{ type: 'submit', value: 'Add to Store', class: 'btn btn-primary' }
+
